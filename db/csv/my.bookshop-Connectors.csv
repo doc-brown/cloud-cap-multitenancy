@@ -1,0 +1,4 @@
+connectorID,currentTransactionDate,info,chargingStation_ID
+1,2021-06-27T14:52:23Z,This can be a really long text ....,1
+2,2021-06-27T14:52:23Z,<JSON>,1
+3,2021-06-27T14:52:23Z,Test 3,2

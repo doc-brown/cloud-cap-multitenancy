@@ -1,0 +1,61 @@
+{
+    "xsappname": "capmt",
+    "tenant-mode": "shared",
+    "scopes": [
+        {
+            "name": "$XSAPPNAME.mtcallback",
+            "description": "Multi Tenancy Callback Access",
+            "grant-as-authority-to-apps": [
+                "$XSAPPNAME(application, sap-provisioning, tenant-onboarding)"
+            ]
+        },
+        {
+            "name": "$XSAPPNAME.mtdeployment",
+            "description": "Scope to trigger a re-deployment of the database artifacts"
+        },
+        {
+            "name": "$XSAPPNAME.Administrator",
+            "description": "Administrate the application"
+        },
+        {
+            "name": "$XSAPPNAME.User",
+            "description": "Use the application"
+        }
+    ],
+    "role-templates": [
+        {
+            "name": "Administrator",
+            "description": "Administrator",
+            "scope-references": [
+                "$XSAPPNAME.Administrator"
+            ]
+        },
+        {
+            "name": "User",
+            "description": "User",
+            "scope-references": [
+                "$XSAPPNAME.User"
+            ]
+        }
+    ],
+    "role-collections": [
+        {
+            "name": "capmt_Administrator",
+            "description": "CAP Administrator",
+            "role-template-references": [
+                "$XSAPPNAME.Administrator",
+                "$XSAPPNAME.User"
+            ]
+        },
+        {
+            "name": "capmt_User",
+            "description": "CAP User",
+            "role-template-references": [
+                "$XSAPPNAME.User"
+            ]
+        }
+    ],
+    "authorities": [
+        "$XSAPPNAME.mtdeployment"
+    ]
+}

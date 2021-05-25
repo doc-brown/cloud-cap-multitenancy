@@ -81,3 +81,78 @@ entity config {
   key name : String(12);
   value    : String(24);
 }
+
+entity ChargingStations {
+key ID : Integer;
+// |templateHash |string |VARCHAR
+// |templateHashTechnical |string |VARCHAR
+// |templateHashCapabilities |string |VARCHAR
+// |templateHashOcppStandard |string |VARCHAR
+// |templateHashOcppVendor |string |VARCHAR
+issuer : Boolean;
+// public |boolean |BOOLEAN
+// |siteAreaID |string |VARCHAR
+// |siteID |string |VARCHAR
+// chargePointSerialNumber: String;
+chargePointModel :String;
+// chargeBoxSerialNumber :String;
+// chargePointVendor :String;
+// |iccid |string |VARCHAR
+// |imsi |string |VARCHAR
+// |meterType |string |VARCHAR
+// |firmwareVersion |string |VARCHAR
+// |meterSerialNumber |string |VARCHAR
+// |endpoint |string |VARCHAR
+// |ocppVersion |OCPPVersion (string enum) |VARCHAR
+// |ocppProtocol |OCPPProtocol (string enum) |VARCHAR
+// |cfApplicationIDAndInstanceIndex |string |VARCHAR
+// |lastSeen |Date |SECONDDATE
+// |deleted |boolean |BOOLEAN
+// |lastReboot |Date |SECONDDATE
+// |chargingStationURL |string |NVARCHAR
+// |maximumPower |number |SMALL
+// |excludeFromSmartCharging |boolean |BOOLEAN
+// |forceInactive |boolean |BOOLEAN
+// |manualConfiguration |boolean |BOOLEAN
+// |powerLimitUnit | ChargingRateUnitType (string enum) |VARCHAR
+voltage: Integer;
+connectors:  Association to many Connectors on connectors.chargingStation = $self;
+// |chargePoints |ChargePoints[] |deferred to new table
+// |coordinates |number[] |deferred to new coordinates table
+// |remoteAuthorizations |RemoteAuthorization[] |deferred to new table
+// |currentIPAddress |string |VARCHAR
+// |capabilities |ChargingStationCapabilities |deferred to new table
+// |ocppStandardParameters |KeyValue[] |deferred to new table
+// |ocppVendorParameters |KeyValue[] |deferred to new table
+// |ocpiData |ChargingStationOcpiData |deferred to new table
+}
+
+entity Connectors {
+//   key id: Integer;
+  key connectorId: Integer;
+  chargingStation: Association to ChargingStations;
+//   currentInstantWatts?: number;
+//   currentStateOfCharge?: number;
+//   currentTotalConsumptionWh?: number;
+//   currentTotalInactivitySecs?: number;
+//   currentInactivityStatus?: InactivityStatus;
+//   currentTransactionID?: number;
+  currentTransactionDate: DateTime;
+//   currentTagID?: string;
+//   status: ChargePointStatus;
+//   errorCode?: string;
+  info: LargeString;
+//   vendorErrorCode?: string;
+//   power?: number;
+//   type?: ConnectorType;
+// //   voltage?: Voltage;
+//   amperage?: number;
+//   amperageLimit?: number;
+//   userID?: string;
+//   user?: User;
+//   statusLastChangedOn?: Date;
+//   numberOfConnectedPhase?: number;
+//   currentType?: CurrentType;
+//   chargePointID?: number;
+//   phaseAssignmentToGrid?: PhaseAssignmentToGrid;
+}

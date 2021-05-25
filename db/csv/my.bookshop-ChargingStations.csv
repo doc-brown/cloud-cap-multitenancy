@@ -1,0 +1,4 @@
+ID,issuer,chargePointModel,voltage
+1,true,ACME,400
+2,false,FOO,230
+3,true,SAP,180
