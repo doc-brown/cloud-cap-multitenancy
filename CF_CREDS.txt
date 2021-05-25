@@ -1,0 +1,12 @@
+#!/bin/bash
+echo ""
+echo "Run these commands after a full deploy."
+echo ""
+set -o allexport; source .env; set +o allexport
+cf set-env capmt-srv CF_API_USER $CF_API_USER
+cf set-env capmt-srv CF_API_PW $CF_API_PW
+cf restage capmt-srv
+cf env capmt-srv | grep CF_API_USER
+cf map-route capmt-app cfapps.eu10.hana.ondemand.com --hostname=${hostname}-app
+cf map-route capmt-srv cfapps.eu10.hana.ondemand.com --hostname=${hostname}-srv
+echo ""
